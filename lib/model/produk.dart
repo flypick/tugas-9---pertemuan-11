@@ -1,18 +1,17 @@
 class Produk {
-  int? id;
+  String? id;
   String? kodeProduk;
   String? namaProduk;
   int? hargaProduk;
 
   Produk({this.id, this.kodeProduk, this.namaProduk, this.hargaProduk});
 
-  // Fungsi untuk mengubah JSON dari API menjadi Object Produk
   factory Produk.fromJson(Map<String, dynamic> obj) {
     return Produk(
-      id: obj['id'],
+      id: obj['id'].toString(), // Pastikan dikonversi ke String jika dari API berupa Int
       kodeProduk: obj['kode_produk'],
       namaProduk: obj['nama_produk'],
-      hargaProduk: obj['harga'],
+      hargaProduk: int.tryParse(obj['harga'].toString()),
     );
   }
 }
